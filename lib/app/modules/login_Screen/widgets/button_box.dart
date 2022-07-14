@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../global/views/global_view.dart';
-
 class ButtonLogin extends StatelessWidget {
   ButtonLogin(
       {Key? key,

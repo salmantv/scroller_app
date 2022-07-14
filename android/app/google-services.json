@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "855505813034",
+    "project_id": "scroller-1a6e5",
+    "storage_bucket": "scroller-1a6e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855505813034:android:8674ba4130fa306106cd53",
+        "android_client_info": {
+          "package_name": "com.salman.scroller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855505813034-vkjqoaqffn00mrdonaje5ckhneiekp7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.salman.scroller",
+            "certificate_hash": "fb7519bb101749d30a13720253db28d3d6a1a4ed"
+          }
+        },
+        {
+          "client_id": "855505813034-1sug18cfbmqe8snon1qqfnph18gjmroo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrKXz150xChwwgdPGqd31mwhx3hu-B1qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855505813034-1sug18cfbmqe8snon1qqfnph18gjmroo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

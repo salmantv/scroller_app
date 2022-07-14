@@ -1,0 +1,177 @@
+[Ewell]
+
+@® New»
+
+aS
+
+AD Melle elecsd
+LB cco)
+Reels}
+| Byres
+ete
+Ciera
+Deen)
+ieee
+LR sls
+
+pe eer}
+
+Sa Be
+Src
+Sam erratic
+
+Reels}
+Ciera
+ete
+ieee
+
+> © Local Disk (C)
+
+= CBM (D)
+
+> FMCE (E)
+
+he Neots
+
+aaa
+
+i i id
+
+aN lia
+
+[EMM oe ore (LULL)
+
+Name
+
+Mm avd
+
+LBs}
+
+L Meio me la
+
+L Re ai
+
+Luued
+
+Lali)
+
+| ecog
+
+| coats)
+
+| eneecscnsy
+
+BB build-cache.lock
+
+| eaters
+
+| eateries
+
+| eerste acs
+PF. Renvevi ries etmertsed
+| oy
+
+| Wane aeeceeers
+
+| nee eee
+
+= Vien © ono
+
+Perri)
+
+EU Po)
+
+[ROWE E!
+
+Sania ores
+
+03-06-2022 11:59
+
+(ERP)
+
+(en Pad
+
+[om sea)
+
+[mse yAU ed
+
+(en Pa)
+
+Sane erly a orae
+
+[sms ea ea
+
+[sms
+
+PESO erle ee!
+
+SURO eel dae
+
+14-07-2022 10:05
+
+14-07-2022 10:30
+
+SRO erliPe early
+
+ 
+
+ 
+
+- @ x
+Administrator: Command Prompt a a a4
+
+C:\WINDOWS\system32>keytool -list -v -alias androiddebugkey -keystore C:\Users\salmantv\ android\debug.keystore
+
+Pega ee EM Cle cease Om gee Ce eae stem en een Lae RSC Ce ee Seiad |
+
+java.lang.Exception: Keystore file does not exist: C:\Users\salmantv\.android\debug. keystore
+at java.base/sun. security. tools.keytool .Main.doCommands (Main. java:916)
+at java.base/sun. security. tools. keytool Main. run (Main. java:416)
+Pan CN ete aa aes Sue ve UM SC ume C.D}
+
+C:\WINDOWS\system32>keytool -list -v -alias androiddebugkey -keystore C:\Users\salmantv\ android\debug.keystore
+Sree Seen eee
+AGE CCE Sets
+eta eee err)
+Pees] Peete OU
+Certificate chain length: 1
+Certificate[1]:
+Oran POE est AMG act ere Bid
+pee en On eet Ae aU ert cli
+eSCrMn aan
+NoeCR ce ELE aE sty sity Cary oneal ee Pav SEP EL Yas L7)
+Certificate fingerprints:
+Srv
+
+ 
+
+ 
+
+10:17:49:D3:@A:13:72:02:53:DB oN Ea)
+SHA256: 1D:D7:72:2D: :54:15:BF:46:A3:DB:53:39:B7:5F:55:C5:
+
+Signature algorithm name: SHAlwithRSA (weak)
+
+Subject Public Key Algorithm: 2048-bit RSA key
+
+Version: 1
+
+   
+
+  
+
+OPIS YR) REE EE EC)
+
+ertyses
+Meecgstste RT to West ese esC  eR S mec ee cc ern eS
+CSU neat emt cron
+
+C: \WINDOWS\system32>
+
+leone enc nc)
+ieagaicy 1KB
+ii 1KB
+ii 1KB
+
+Be
+

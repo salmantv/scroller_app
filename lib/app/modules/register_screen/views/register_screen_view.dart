@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:scroller/app/modules/login_Screen/views/login_screen_view.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/button_box.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/text_input.dart';
 import 'package:scroller/app/modules/register_screen/controllers/register_screen_controller.dart';
@@ -49,6 +50,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   height: MediaQuery.of(context).size.height * 0.069,
                   child: Textinputfild(
+                      isObscure: true,
                       iconEnd: Icons.remove_red_eye,
                       controller: _paswordcontroller,
                       labelText: "password",
@@ -60,7 +62,8 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                 ButtonLogin(
                   hintText: "Sign Up",
                   circular: 30,
-                  Ontap: () {},
+                  Ontap: () => authController.regsterUser(
+                      _emailcontroller.text, _paswordcontroller.text),
                   isImage: false,
                   colorbutton: buttonColor,
                 ),
@@ -92,7 +95,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                     ),
                     InkWell(
                       onTap: () {
-                        print("sing in");
+                        Get.back();
                       },
                       child: Text(
                         "Login",
