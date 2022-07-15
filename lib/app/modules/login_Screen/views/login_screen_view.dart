@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/button_box.dart';
+import 'package:scroller/app/modules/login_Screen/widgets/passwordfild.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/text_input.dart';
 import 'package:scroller/app/modules/register_screen/views/register_screen_view.dart';
 
@@ -49,8 +50,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   height: MediaQuery.of(context).size.height * 0.069,
-                  child: Textinputfild(
-                      isObscure: true,
+                  child: Passwordfild(
                       iconEnd: Icons.remove_red_eye,
                       controller: _paswordcontroller,
                       labelText: "password",

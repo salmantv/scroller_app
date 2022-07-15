@@ -1,12 +1,13 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelectController extends GetxController {
-  late Rx<File?> _pickedpicture;
+  File? _pickedpicture;
 
-  File? get profleimage => _pickedpicture.value;
+  File? get profleimage => _pickedpicture;
 
   void pickImage() async {
     final pickedimage =
@@ -16,7 +17,7 @@ class ImageSelectController extends GetxController {
     } else {
       Get.snackbar("Profile Picture", "Profile picture not selected!");
     }
-
-    _pickedpicture = Rx<File?>(File(pickedimage!.path));
+    _pickedpicture = File(pickedimage!.path);
+    log(_pickedpicture.toString());
   }
 }

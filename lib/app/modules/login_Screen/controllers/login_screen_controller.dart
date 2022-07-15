@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 
 class LoginScreenController extends GetxController {
   static LoginScreenController instance = Get.find();
+  RxBool ispasswordvisibile = false.obs;
 
   Future<void> loginUser(String email, String password) async {
     try {

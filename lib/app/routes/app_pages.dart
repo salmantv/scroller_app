@@ -42,15 +42,10 @@ class AppPages {
       page: () => RegisterScreenView(),
       binding: RegisterScreenBinding(),
     ),
-    GetPage(
-      name: _Paths.IMAGE_SELECT,
-      page: () => ImageSelectView(),
-      binding: ImageSelectBinding(),
-    ),
-    GetPage(
-      name: _Paths.USER_INFORMATION,
-      page: () => UserInformationView(),
-      binding: UserInformationBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.USER_INFORMATION,
+    //   page: () => UserInformationView(),
+    //   binding: UserInformationBinding(),
+    // ),
   ];
 }

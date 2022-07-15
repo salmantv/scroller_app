@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scroller/app/modules/imageSelect/views/image_select_view.dart';
 import 'package:scroller/app/modules/login_Screen/views/login_screen_view.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/button_box.dart';
+import 'package:scroller/app/modules/login_Screen/widgets/passwordfild.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/text_input.dart';
 import 'package:scroller/app/modules/register_screen/controllers/register_screen_controller.dart';
 
@@ -50,8 +51,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   height: MediaQuery.of(context).size.height * 0.069,
-                  child: Textinputfild(
-                      isObscure: true,
+                  child: Passwordfild(
                       iconEnd: Icons.remove_red_eye,
                       controller: _paswordcontroller,
                       labelText: "password",
@@ -63,21 +63,24 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                 ButtonLogin(
                   hintText: "Sign Up",
                   circular: 30,
-                  Ontap: () {
+                  Ontap: () async {
                     if (_emailcontroller.text == "" ||
                         _paswordcontroller.text == "") {
                       Get.snackbar(
-                          "Error Create account", "Please fill all filed");
+                          "Error Create accounts", "Please fill all filed");
                     } else if (!_emailcontroller.text.contains("@") ||
                         !_emailcontroller.text.contains(".") ||
                         !_emailcontroller.text.contains("com")) {
                       Get.snackbar("Error Create account",
                           "Enter a valid email address");
-                    } else if (_paswordcontroller.text.length != 6) {
+                    } else if (_paswordcontroller.text.length < 6) {
                       Get.snackbar("Error Create account",
                           "password length minimum 6 characters");
                     } else {
-                      Get.to(ImageSelectView());
+                      Get.to(ImageSelectView(
+                        emailcontroller: _emailcontroller,
+                        paswordcontroller: _paswordcontroller,
+                      ));
                     }
                   },
                   isImage: false,

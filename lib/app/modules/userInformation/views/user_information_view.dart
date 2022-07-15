@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:scroller/app/modules/imageSelect/controllers/image_select_controller.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/button_box.dart';
 
 import '../../global/views/global_view.dart';
@@ -8,9 +10,20 @@ import '../../login_Screen/widgets/text_input.dart';
 import '../controllers/user_information_controller.dart';
 
 class UserInformationView extends GetView<UserInformationController> {
+  final imagecontroller = Get.put(ImageSelectController());
+
   final _bio = TextEditingController();
   final _nikeName = TextEditingController();
   final _phoneNumber = TextEditingController();
+
+  UserInformationView(
+      {required this.emailTextcontroller,
+      required this.paswordTextcontroller,
+      required this.nametextcontroller});
+
+  TextEditingController emailTextcontroller = TextEditingController();
+  TextEditingController paswordTextcontroller = TextEditingController();
+  TextEditingController nametextcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +73,7 @@ class UserInformationView extends GetView<UserInformationController> {
                     width: MediaQuery.of(context).size.width,
                     child: Textinputfild(
                       type: TextInputType.number,
-                      controller: _nikeName,
+                      controller: _phoneNumber,
                       labelText: "Phone Number",
                       icon: Icons.phone,
                     ),
@@ -74,6 +87,7 @@ class UserInformationView extends GetView<UserInformationController> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
+                      controller: _bio,
                       decoration: InputDecoration(
                           hintText: "bio",
                           hintStyle:
@@ -102,9 +116,18 @@ class UserInformationView extends GetView<UserInformationController> {
                 ButtonLogin(
                     hintText: "Next",
                     circular: 30,
-                    Ontap: () {},
+                    Ontap: () async {
+                      await authController.regsterUser(
+                          emailTextcontroller.text,
+                          paswordTextcontroller.text,
+                          nametextcontroller.text,
+                          _nikeName.text,
+                          _phoneNumber.text,
+                          _bio.text,
+                          imagecontroller.profleimage);
+                    },
                     isImage: false,
-                    colorbutton: buttonColor)
+                    colorbutton: buttonColor),
               ],
             ),
           ),
