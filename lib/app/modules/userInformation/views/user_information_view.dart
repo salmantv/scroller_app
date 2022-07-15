@@ -59,6 +59,7 @@ class UserInformationView extends GetView<UserInformationController> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     child: Textinputfild(
+                      type: TextInputType.number,
                       controller: _nikeName,
                       labelText: "Phone Number",
                       icon: Icons.phone,
@@ -72,15 +73,31 @@ class UserInformationView extends GetView<UserInformationController> {
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    child: Textinputfild(
-                      controller: _nikeName,
-                      labelText: "Bio ",
-                      icon: Icons.edit,
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: "bio",
+                          hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 15),
+                          filled: true,
+                          fillColor: Color(0xff1f222a),
+                          labelStyle: TextStyle(fontSize: 20),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Color(0xff091227),
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Color(0xff091227),
+                              ))),
+                      minLines: 6,
+                      maxLines: 6,
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 210,
+                  height: 120,
                 ),
                 ButtonLogin(
                     hintText: "Next",

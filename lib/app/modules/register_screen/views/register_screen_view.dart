@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:scroller/app/modules/imageSelect/views/image_select_view.dart';
 import 'package:scroller/app/modules/login_Screen/views/login_screen_view.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/button_box.dart';
 import 'package:scroller/app/modules/login_Screen/widgets/text_input.dart';
@@ -62,8 +63,23 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                 ButtonLogin(
                   hintText: "Sign Up",
                   circular: 30,
-                  Ontap: () => authController.regsterUser(
-                      _emailcontroller.text, _paswordcontroller.text),
+                  Ontap: () {
+                    if (_emailcontroller.text == "" ||
+                        _paswordcontroller.text == "") {
+                      Get.snackbar(
+                          "Error Create account", "Please fill all filed");
+                    } else if (!_emailcontroller.text.contains("@") ||
+                        !_emailcontroller.text.contains(".") ||
+                        !_emailcontroller.text.contains("com")) {
+                      Get.snackbar("Error Create account",
+                          "Enter a valid email address");
+                    } else if (_paswordcontroller.text.length != 6) {
+                      Get.snackbar("Error Create account",
+                          "password length minimum 6 characters");
+                    } else {
+                      Get.to(ImageSelectView());
+                    }
+                  },
                   isImage: false,
                   colorbutton: buttonColor,
                 ),

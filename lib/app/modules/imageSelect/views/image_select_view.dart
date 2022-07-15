@@ -9,6 +9,7 @@ import '../controllers/image_select_controller.dart';
 
 class ImageSelectView extends GetView<ImageSelectController> {
   final _nameTextController = TextEditingController();
+  final imagecontroller = Get.put(ImageSelectController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +37,22 @@ class ImageSelectView extends GetView<ImageSelectController> {
               SizedBox(
                 height: 40,
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: CircleAvatar(
-                  radius: 70,
-                  backgroundColor: borderColor,
-                  backgroundImage: NetworkImage(
-                    "https://media.istockphoto.com/vectors/male-user-icon-vector-id517998264?k=20&m=517998264&s=612x612&w=0&h=pdEwtkJlZsIoYBVeO2Bo4jJN6lxOuifgjaH8uMIaHTU=",
-                  ),
-                ),
-              ),
+              InkWell(
+                  onTap: () => imagecontroller.pickImage(),
+                  child: imagecontroller.profleimage == null
+                      ? Container(
+                          margin: EdgeInsets.only(left: 20),
+                          child: CircleAvatar(
+                              radius: 70,
+                              backgroundColor: borderColor,
+                              backgroundImage:
+                                  FileImage(imagecontroller.profleimage!)),
+                        )
+                      : Container(
+                          child: CircleAvatar(
+                            child: Image.network(""),
+                          ),
+                        )),
               SizedBox(
                 height: 40,
               ),

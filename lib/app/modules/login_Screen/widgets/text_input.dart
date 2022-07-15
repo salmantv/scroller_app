@@ -7,7 +7,8 @@ class Textinputfild extends StatelessWidget {
       required this.labelText,
       required this.icon,
       this.isObscure = false,
-      this.iconEnd})
+      this.iconEnd,
+      this.type})
       : super(key: key);
 
   final TextEditingController controller;
@@ -15,10 +16,12 @@ class Textinputfild extends StatelessWidget {
   final IconData icon;
   final IconData? iconEnd;
   final bool isObscure;
+  final TextInputType? type;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: type,
       controller: controller,
       decoration: InputDecoration(
           suffixIcon: IconButton(onPressed: () {}, icon: Icon(iconEnd)),

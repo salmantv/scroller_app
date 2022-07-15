@@ -4,30 +4,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:scroller/app/modules/register_screen/model/userModel.dart';
-import 'package:scroller/app/modules/userInformation/views/user_information_view.dart';
 
 class RegisterScreenController extends GetxController {
   static RegisterScreenController instance = Get.find();
 
   late Rx<User?> _user;
 
-  @override
-  void onReady() {
-    super.onReady();
-    _user = Rx<User?>(firebaseAuth.currentUser);
-    _user.bindStream(firebaseAuth.authStateChanges());
-    ever(_user, _stInit);
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   _user = Rx<User?>(firebaseAuth.currentUser);
+  //   _user.bindStream(firebaseAuth.authStateChanges());
+  //   ever(_user, _stInit);
+  // }
 
-  _stInit(User? user) {
-    if (user == null) {
-      Get.offAll(UserInformationView());
-    } else {
-      Get.offAll(HomeView());
-    }
-  }
+  // _stInit(User? user) {
+  //   if (user == null) {
+  //     Get.offAll(());
+  //   } else {
+  //     Get.offAll(HomeView());
+  //   }
+  // }
 
   Future regsterUser(String email, String password) async {
     try {
