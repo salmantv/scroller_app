@@ -1,16 +1,17 @@
-import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:scroller/app/modules/postUplodingscreen/model/postModel.dart';
-import 'package:video_compress/video_compress.dart';
-import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:path/path.dart';
+
+import 'package:video_compress/video_compress.dart';
 
 class PostUplodingscreenController extends GetxController {
   File? car;
@@ -54,35 +55,43 @@ class PostUplodingscreenController extends GetxController {
       String id, String videopath, File videofile) async {
     Reference ref = firebaseStorge.ref().child("videos").child(id);
     UploadTask uploadTask = ref.putFile(videofile);
+    uploadTask.snapshotEvents.listen((event) {
+      showProgerss();
+    }).onError((error) {
+      Get.snackbar("Uploade", error.toString());
+    });
     TaskSnapshot snp = await uploadTask;
     String imageUrl = await snp.ref.getDownloadURL();
     return imageUrl;
-  }
-
-  _compressthevideo(String videopath) async {
-    final videocommperss = await VideoCompress.compressVideo(
-      videopath,
-      quality: VideoQuality.MediumQuality,
-      deleteOrigin: false,
-    );
-    if (videocommperss == null) return videocommperss!.file;
   }
 
   _uploadimage(String id, String videoPath) async {
     Reference ref = firebaseStorge.ref().child("coverpic").child(id);
-    UploadTask uploadTask = ref.putFile(await getcoverimage(videoPath));
+    File comppers = await getcoverimage(videoPath);
+    UploadTask uploadTask = ref.putFile(comppers);
     TaskSnapshot snp = await uploadTask;
     String imageUrl = await snp.ref.getDownloadURL();
     return imageUrl;
   }
 
-  getcoverimage(String videopath) async {
-    final coverimage = await VideoCompress.getFileThumbnail(videopath);
+  Future<File> getcoverimage(String videopath) async {
+    File coverimage = await VideoCompress.getFileThumbnail(videopath);
+    update();
     return coverimage;
   }
 
-  @override
-  void onInit() {
-    super.onInit();
+  void showProgerss() {
+    Get.defaultDialog(
+        title: "Post is uploding Wait",
+        titleStyle: TextStyle(fontSize: 17, fontWeight: FontWeight.normal),
+        middleText: "",
+        actions: [
+          Center(
+            child: CircularProgressIndicator(color: buttonColor),
+          ),
+        ],
+        backgroundColor: Color(0xff1f222a),
+        middleTextStyle: TextStyle(color: Colors.white),
+        radius: 8);
   }
 }

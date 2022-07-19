@@ -7,6 +7,7 @@ import 'package:scroller/app/modules/confermationscreen/views/widget/button.dart
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:scroller/app/modules/postUplodingscreen/views/post_uplodingscreen_view.dart';
+import 'package:video_compress/video_compress.dart';
 
 import 'package:video_player/video_player.dart';
 
@@ -72,15 +73,19 @@ class _ConfermationscreenViewState extends State<ConfermationscreenView> {
                   NextButton(
                       hintText: "Conform",
                       circular: 30,
-                      Ontap: () {
+                      Ontap: () async {
                         if (confermationcontroller.controller == null) {
-                          Get.snackbar("Somthing worge", "No video fonded");
+                          Get.snackbar("Somthing worge", "no video fonded");
                           return;
                         } else {
                           confermationcontroller.controller.pause();
+                          File coverimage =
+                              await VideoCompress.getFileThumbnail(
+                                  widget.videopath);
                           Get.to(PostUplodingscreenView(
                             videofile: widget.videofile,
                             videopath: widget.videopath,
+                            Coverimage: coverimage,
                           ));
                         }
                       },

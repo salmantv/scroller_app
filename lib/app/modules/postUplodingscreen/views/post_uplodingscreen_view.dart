@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/confermationscreen/views/widget/button.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
+import 'package:video_compress/video_compress.dart';
 import '../../confermationscreen/controllers/confermationscreen_controller.dart';
 import '../controllers/post_uplodingscreen_controller.dart';
 
@@ -12,11 +14,15 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
   final File videofile;
   final String videopath;
 
-  PostUplodingscreenView({required this.videofile, required this.videopath});
+  PostUplodingscreenView(
+      {required this.videofile,
+      required this.videopath,
+      required this.Coverimage});
 
   final confermationcontroller = Get.put(ConfermationscreenController());
   final postuplodecontroller = Get.put(PostUplodingscreenController());
   final bioTextcontroll = TextEditingController();
+  File Coverimage;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +78,12 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                         decoration: BoxDecoration(
                             color: Color(0xff1f222a),
                             borderRadius: BorderRadius.circular(12)),
+                        child: Image.file(
+                          File(
+                            Coverimage.path,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ],
                   ),
@@ -109,7 +121,9 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                       size: 35,
                     ),
                     trailing: IconButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          (videopath);
+                        },
                         icon: Icon(Icons.arrow_forward_ios_outlined)),
                   ),
                   SizedBox(
@@ -130,7 +144,6 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                           Ontap: () async {
                             await postuplodecontroller.uploadingPost(
                                 bioTextcontroll.text, videopath, videofile);
-                            await confermationcontroller.controller.dispose();
                           },
                           colorbutton: buttonColor),
                     ],
