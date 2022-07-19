@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scroller/app/modules/comment_screen/views/comment_screen_view.dart';
 import 'package:scroller/app/modules/homescreen/widget/bottumsheet.dart';
 import 'package:scroller/app/modules/homescreen/widget/circularanimation.dart';
 import 'package:scroller/app/modules/homescreen/widget/video_player_controller.dart';
@@ -46,6 +47,7 @@ class HomescreenView extends GetView<HomescreenController> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Obx(() {
         return PageView.builder(
             scrollDirection: Axis.vertical,
@@ -182,19 +184,22 @@ class HomescreenView extends GetView<HomescreenController> {
                                         height: 25,
                                       ),
                                       IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.favorite,
-                                          size: 40,
-                                          color:
-                                              Color.fromARGB(255, 202, 88, 80),
-                                        ),
+                                        onPressed: () =>
+                                            homecontroller.likevideo(data.id),
+                                        icon: Icon(Icons.favorite,
+                                            size: 40,
+                                            color: data.likes.contains(
+                                                    firebaseAuth
+                                                        .currentUser!.uid)
+                                                ? Color.fromARGB(
+                                                    255, 202, 88, 80)
+                                                : Colors.white),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 14, top: 10),
                                         child: Text(
-                                          "2",
+                                          data.likes.length.toString(),
                                           style: TextStyle(fontSize: 14),
                                         ),
                                       ),
@@ -202,7 +207,9 @@ class HomescreenView extends GetView<HomescreenController> {
                                         height: 25,
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          commentbottomsheet(context, data.id);
+                                        },
                                         icon: Icon(
                                           Icons.mode_comment_sharp,
                                           size: 40,

@@ -38,4 +38,19 @@ class HomescreenController extends GetxController {
       Get.snackbar("Not uplode", "Video not uplode ");
     }
   }
+
+  likevideo(String id) async {
+    DocumentSnapshot doc =
+        await firbasestore.collection("videos").doc(id).get();
+    var uid = firebaseAuth.currentUser!.uid;
+    if ((doc.data()! as dynamic)['likes'].contains(uid)) {
+      await firbasestore.collection("videos").doc(id).update({
+        "likes": FieldValue.arrayRemove([uid])
+      });
+    } else {
+      await firbasestore.collection("videos").doc(id).update({
+        "likes": FieldValue.arrayUnion([uid]),
+      });
+    }
+  }
 }

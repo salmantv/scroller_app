@@ -16,6 +16,7 @@ abstract class Routes {
   static const PROFILESCREEN = _Paths.PROFILESCREEN;
   static const CONFERMATIONSCREEN = _Paths.CONFERMATIONSCREEN;
   static const POST_UPLODINGSCREEN = _Paths.POST_UPLODINGSCREEN;
+  static const COMMENT_SCREEN = _Paths.COMMENT_SCREEN;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const PROFILESCREEN = '/profilescreen';
   static const CONFERMATIONSCREEN = '/confermationscreen';
   static const POST_UPLODINGSCREEN = '/post-uplodingscreen';
+  static const COMMENT_SCREEN = '/comment-screen';
 }
