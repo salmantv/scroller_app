@@ -54,14 +54,14 @@ class PostUplodingscreenController extends GetxController {
   Future<String> _uploadStorge(
       String id, String videopath, File videofile) async {
     Reference ref = firebaseStorge.ref().child("videos").child(id);
+    showProgerss();
     UploadTask uploadTask = ref.putFile(videofile);
-    uploadTask.snapshotEvents.listen((event) {
-      showProgerss();
-    }).onError((error) {
+    uploadTask.snapshotEvents.listen((event) {}).onError((error) {
       Get.snackbar("Uploade", error.toString());
     });
     TaskSnapshot snp = await uploadTask;
     String imageUrl = await snp.ref.getDownloadURL();
+    Get.back();
     return imageUrl;
   }
 

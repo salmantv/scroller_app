@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/icons/icons.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
+import 'package:scroller/app/modules/homescreen/views/homescreen_view.dart';
 
 import '../../homescreen/controllers/homescreen_controller.dart';
 import '../controllers/home_controller.dart';
@@ -19,6 +20,7 @@ class HomeView extends GetView<HomeController> {
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
             onTap: (value) {
+              if (value == 2) {}
               homecontroller.pageindex.value = value;
             },
             type: BottomNavigationBarType.fixed,
@@ -31,8 +33,6 @@ class HomeView extends GetView<HomeController> {
                   icon: Icon(Customicon.home), label: "home"),
               BottomNavigationBarItem(
                   icon: Icon(Customicon.search), label: "search"),
-              BottomNavigationBarItem(
-                  icon: Icon(Customicon.comment), label: "message"),
               BottomNavigationBarItem(
                   icon: Icon(Customicon.user), label: "profile"),
             ]);

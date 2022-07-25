@@ -32,6 +32,11 @@ var logincontroll = LoginScreenController.instance;
 var pages = <Widget>[
   HomescreenView(),
   SearchscreenView(),
-  MassgescreenView(),
-  ProfilescreenView(),
+  ProfilescreenView(
+    isCurrentuser: true,
+    uid: firebaseAuth.currentUser!.uid,
+  ),
 ];
+
+// add bottumsheet 
+

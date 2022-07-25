@@ -7,15 +7,17 @@ import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:scroller/app/modules/login_Screen/views/login_screen_view.dart';
+import 'package:scroller/app/modules/profilescreen/controllers/profilescreen_controller.dart';
 import 'package:scroller/app/modules/register_screen/model/userModel.dart';
 
 class RegisterScreenController extends GetxController {
   static RegisterScreenController instance = Get.find();
+  final controller = Get.put(ProfilescreenController());
 
   late Rx<User?> _user;
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());

@@ -3,7 +3,7 @@ import 'package:scroller/app/modules/global/views/global_view.dart';
 
 class LoginScreenController extends GetxController {
   static LoginScreenController instance = Get.find();
-  RxBool ispasswordvisibile = false.obs;
+  RxBool ispasswordvisibile = true.obs;
 
   Future<void> loginUser(String email, String password) async {
     try {
@@ -11,7 +11,7 @@ class LoginScreenController extends GetxController {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
 
-        Get.snackbar("Login", "Yout login is successful");
+        Get.snackbar("Login", "Your login is successfull");
       } else {
         Get.snackbar("Error Login Account", "Please enter all fields");
       }

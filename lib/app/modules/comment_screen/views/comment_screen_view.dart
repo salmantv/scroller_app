@@ -1,45 +1,58 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/comment_screen/controllers/comment_screen_controller.dart';
+import 'package:scroller/app/modules/comment_screen/widget/textfiled.dart';
+
 import 'package:timeago/timeago.dart' as timeago;
 
-commentbottomsheet(context, String id) async {
+import '../../global/views/global_view.dart';
+
+commentbottomsheet(context, String id, String commentcount) async {
   final commentstatcontroller = Get.put(CommentScreenController());
   final commentTextcontroller = TextEditingController();
   commentstatcontroller.updatePostId(id);
   void commentTextfild() {
-    Get.defaultDialog(
-        content: Column(children: [
-          TextField(
-            controller: commentTextcontroller,
-            decoration: InputDecoration(
-                suffixIcon: IconButton(
-                    onPressed: () => commentstatcontroller
-                        .postComment(commentTextcontroller.text),
-                    icon: Icon(Icons.send)),
-                hintText: "Add oomment",
-                hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
-                filled: true,
-                fillColor: Color(0xff1f222a),
-                labelStyle: TextStyle(fontSize: 20),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(
-                      color: Color(0xff091227),
-                    )),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.black))),
+    Get.bottomSheet(
+      backgroundColor: Color(0xff1f222a),
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      Container(
+        height: MediaQuery.of(context).size.height * 0.220,
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: 260,
+                child: CommentText(
+                  controller: commentTextcontroller,
+                  labelText: "Add comment",
+                  icon: Icons.mark_as_unread,
+                ),
+              ),
+              FloatingActionButton(
+                  backgroundColor: buttonColor,
+                  child: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    commentstatcontroller
+                        .postComment(commentTextcontroller.text.trim());
+                    Get.back();
+                  })
+            ],
           )
         ]),
-        title: "Add comment",
-        titleStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
-        middleText: "",
-        middleTextStyle: TextStyle(color: Colors.white),
-        radius: 8);
+      ),
+    );
   }
 
   Get.bottomSheet(
@@ -57,7 +70,7 @@ commentbottomsheet(context, String id) async {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "27K",
+                  commentcount,
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.normal),
                 ),
                 SizedBox(
@@ -65,15 +78,21 @@ commentbottomsheet(context, String id) async {
                 ),
                 Text(
                   "Comments",
-                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.normal),
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.normal),
                 ),
                 Divider(
                   color: Colors.white,
                   thickness: 10,
                 ),
                 SizedBox(
-                  height: 30,
+                  width: 20,
                 ),
+                TextButton.icon(
+                    onPressed: () {
+                      commentTextfild();
+                    },
+                    icon: Icon(Icons.send),
+                    label: Text("Add comment")),
               ],
             ),
             SizedBox(
@@ -81,83 +100,72 @@ commentbottomsheet(context, String id) async {
             ),
             Container(
               width: 600,
-              height: 300,
+              height: 350,
               child: Obx(() {
-                return ListView.builder(
-                    itemCount: commentstatcontroller.commentdata.length,
-                    itemBuilder: ((context, index) {
-                      final commentdata =
-                          commentstatcontroller.commentdata[index];
-                      return Column(
-                        children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: CircleAvatar(
-                                        radius: 20,
-                                        backgroundColor: Colors.black,
-                                        child: Image.network(
-                                          commentdata.profilephto,
-                                          fit: BoxFit.cover,
-                                        )),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  commentdata.username,
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                              ]),
-                          SizedBox(
-                            height: 15,
+                return ListView.separated(
+                  itemCount: commentstatcontroller.commentdata.length,
+                  itemBuilder: ((context, index) {
+                    final alldata = commentstatcontroller.commentdata[index];
+                    return ListTile(
+                      leading: ClipOval(
+                        child: CachedNetworkImage(
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover,
+                          imageUrl: alldata.profilephto,
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(
+                            strokeWidth: 1,
+                            color: buttonColor,
                           ),
-                          Container(
-                            height: 40,
-                            width: 350,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
+                      ),
+                      title: Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          alldata.username,
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                      ),
+                      subtitle: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 120.0,
                               child: Text(
-                                commentdata.comment,
-                                style: TextStyle(fontSize: 15),
+                                maxLines: 4,
+                                softWrap: false,
+                                alldata.comment,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Icon(Icons.favorite_border),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                "so what towday",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          )
                         ],
-                      );
-                    }));
+                      ),
+                      trailing: Text(timeago.format(alldata.date.toDate())),
+                    );
+                  }),
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Divider(
+                        height: 60,
+                        thickness: 0.5,
+                        color: Colors.white24,
+                      ),
+                    );
+                  },
+                );
               }),
             ),
             IconButton(

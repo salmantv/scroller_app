@@ -53,7 +53,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   child: Passwordfild(
                       iconEnd: Icons.remove_red_eye,
                       controller: _paswordcontroller,
-                      labelText: "password",
+                      labelText: "Password",
                       icon: Icons.key),
                 ),
                 SizedBox(

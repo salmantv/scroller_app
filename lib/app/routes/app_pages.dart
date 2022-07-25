@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:scroller/app/modules/comment_screen/bindings/comment_screen_binding.dart';
-import 'package:scroller/app/modules/comment_screen/views/comment_screen_view.dart';
 import 'package:scroller/app/modules/confermationscreen/bindings/confermationscreen_binding.dart';
 import 'package:scroller/app/modules/confermationscreen/views/confermationscreen_view.dart';
 import 'package:scroller/app/modules/home/bindings/home_binding.dart';
@@ -71,11 +69,11 @@ class AppPages {
       page: () => MassgescreenView(),
       binding: MassgescreenBinding(),
     ),
-    GetPage(
-      name: _Paths.PROFILESCREEN,
-      page: () => ProfilescreenView(),
-      binding: ProfilescreenBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PROFILESCREEN,
+    //   page: () => ProfilescreenView(),
+    //   binding: ProfilescreenBinding(),
+    // ),
     // GetPage(
     //   name: _Paths.COMMENT_SCREEN,
     //   page: () => CommentScreenView(),

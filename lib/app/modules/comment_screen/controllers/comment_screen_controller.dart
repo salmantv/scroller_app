@@ -4,16 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:scroller/app/modules/comment_screen/model/commentmodel.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
-import 'package:scroller/app/modules/postUplodingscreen/model/postModel.dart';
 
 class CommentScreenController extends GetxController {
   final Rx<List<Commentmodel>> _commentdata = Rx<List<Commentmodel>>([]);
   List<Commentmodel> get commentdata => _commentdata.value;
 
   String _postId = "";
-  updatePostId(String id) {
+  updatePostId(String id) async {
     _postId = id;
-    getcomment();
+    await getcomment();
   }
 
   getcomment() async {
@@ -65,6 +64,44 @@ class CommentScreenController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("comment error", e.toString());
+    }
+  }
+
+  commentLike(String id) async {
+    var uid = firebaseAuth.currentUser!.uid;
+
+    if (firebaseAuth.currentUser!.uid == null) {
+      return;
+    }
+    DocumentSnapshot doc = await firbasestore
+        .collection("videos")
+        .doc(_postId)
+        .collection("comments")
+        .doc(id)
+        .get();
+
+    if ((doc.data() as dynamic)["likes"].contains(uid)) {
+      await firbasestore
+          .collection("videos")
+          .doc(_postId)
+          .collection("comments")
+          .doc(id)
+          .update({
+        "likes": FieldValue.arrayRemove([uid]),
+      });
+    } else {
+      try {
+        await firbasestore
+            .collection("videos")
+            .doc(_postId)
+            .collection("comments")
+            .doc(id)
+            .update({
+          "likes": FieldValue.arrayUnion([uid]),
+        });
+      } catch (e) {
+        log(e.toString());
+      }
     }
   }
 }
