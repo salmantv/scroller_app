@@ -20,7 +20,7 @@ class ButtonLogin extends StatelessWidget {
     return InkWell(
       onTap: Ontap,
       child: Container(
-        width: MediaQuery.of(context).size.width - 40,
+        width: MediaQuery.of(context).size.width - 80,
         height: 50,
         decoration: BoxDecoration(
             color: colorbutton, borderRadius: BorderRadius.circular(circular)),

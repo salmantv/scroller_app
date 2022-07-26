@@ -125,6 +125,8 @@ class UserInformationView extends GetView<UserInformationController> {
                           _phoneNumber.text,
                           _bio.text,
                           imagecontroller.profleimage);
+                      Get.snackbar(
+                          "Creating acconunt", "Successfully created button");
                     },
                     isImage: false,
                     colorbutton: buttonColor),

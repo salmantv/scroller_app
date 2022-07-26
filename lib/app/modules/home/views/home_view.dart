@@ -20,21 +20,52 @@ class HomeView extends GetView<HomeController> {
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
             onTap: (value) {
-              if (value == 2) {}
+              if (value == 2) {
+                HomescreenView().openBottomSheet();
+              }
               homecontroller.pageindex.value = value;
             },
             type: BottomNavigationBarType.fixed,
-            backgroundColor: backgroundcolor,
+            backgroundColor: Colors.black45,
             currentIndex: homecontroller.pageindex.value,
             selectedItemColor: buttonColor,
             unselectedItemColor: Colors.white30,
+            selectedFontSize: 10,
+            unselectedFontSize: 10,
+            iconSize: 25,
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Customicon.home), label: "home"),
+                icon: Icon(Customicon.home, size: 25),
+                label: "Home",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Customicon.search), label: "search"),
+                  icon: Icon(
+                    Customicon.search,
+                    size: 25,
+                  ),
+                  label: "Search"),
               BottomNavigationBarItem(
-                  icon: Icon(Customicon.user), label: "profile"),
+                  icon: Container(
+                    margin: EdgeInsets.only(top: 8, right: 12),
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.grey),
+                    child: Center(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Customicon.user,
+                    size: 25,
+                  ),
+                  label: "Profile"),
             ]);
       }),
       body: Obx(

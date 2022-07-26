@@ -31,8 +31,26 @@ class SearchscreenView extends GetView<SearchscreenController> {
         ),
         body: searchStateController.searchuser.isEmpty
             ? Center(
-                child: Text("Serch Users"),
-              )
+                child: Expanded(
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/image/search.png",
+                        height: MediaQuery.of(context).size.height * 0.280,
+                      ),
+                      Text(
+                        "Search you are friends ",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.normal),
+                      )
+                    ],
+                  ),
+                ),
+              ))
             : Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Container(

@@ -18,8 +18,10 @@ dependencies:
   auto_size_text: ^3.0.0
   cached_network_image: ^3.2.0
   timeago: ^3.2.0
+  loading_animation_widget: ^1.2.0+2
   flutter: 
     sdk: flutter
+  shimmer: ^2.0.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -37,3 +39,5 @@ flutter:
     - family: Customicon
       fonts:
         - asset: assets/fonts/Customicon.ttf  
+        - asset: assets/image/postupload.png
+        - asset: assets/image/search.png

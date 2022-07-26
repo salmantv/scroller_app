@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scroller/app/modules/comment_screen/views/comment_screen_view.dart';
-import 'package:scroller/app/modules/homescreen/widget/bottumsheet.dart';
 import 'package:scroller/app/modules/homescreen/widget/circularanimation.dart';
 import 'package:scroller/app/modules/homescreen/widget/video_player_controller.dart';
 import 'package:scroller/app/modules/postUplodingscreen/model/postModel.dart';
@@ -71,19 +70,14 @@ class HomescreenView extends GetView<HomescreenController> {
                   children: [
                     InkWell(
                         onTap: () {},
-                        child: VideoplayItem(videoUrl: data.videourl)),
+                        child: VideoplayItem(
+                          videoUrl: data.videourl,
+                          isplaying: true,
+                        )),
                     Column(
                       children: [
                         SizedBox(
                           height: 40,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 300),
-                          child: InkWell(
-                              onTap: () {
-                                openBottomSheet();
-                              },
-                              child: Icon(Icons.add)),
                         ),
                         const SizedBox(
                           height: 60,
@@ -107,10 +101,13 @@ class HomescreenView extends GetView<HomescreenController> {
                                         children: [
                                           InkWell(
                                             onTap: () {
+                                              VideoplayItem(
+                                                videoUrl: data.videourl,
+                                                isplaying: false,
+                                              );
                                               Get.to(ProfilescreenView(
                                                 isCurrentuser: false,
-                                                uid: firebaseAuth
-                                                    .currentUser!.uid,
+                                                uid: data.uid,
                                               ));
                                             },
                                             child: ClipOval(
@@ -138,10 +135,8 @@ class HomescreenView extends GetView<HomescreenController> {
                                               InkWell(
                                                 onTap: () {
                                                   Get.to(ProfilescreenView(
-                                                    isCurrentuser: false,
-                                                    uid: firebaseAuth
-                                                        .currentUser!.uid,
-                                                  ));
+                                                      isCurrentuser: false,
+                                                      uid: data.uid));
                                                 },
                                                 child: AutoSizeText(
                                                   data.username,
@@ -327,16 +322,16 @@ class HomescreenView extends GetView<HomescreenController> {
                             fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                       IconButton(
-                          onPressed: () async {
-                            await homecontroller.pickvideo(ImageSource.gallery);
-                          },
+                          onPressed: () async {},
                           icon: Icon(Icons.slow_motion_video_outlined))
                     ],
                   ),
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await homecontroller.pickvideo(ImageSource.camera);
+                },
                 child: Container(
                   height: 60,
                   width: double.infinity,

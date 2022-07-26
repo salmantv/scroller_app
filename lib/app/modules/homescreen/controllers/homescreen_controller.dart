@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:scroller/app/modules/confermationscreen/views/confermationscreen_view.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:scroller/app/modules/postUplodingscreen/model/postModel.dart';
+import 'package:video_player/video_player.dart';
 
 class HomescreenController extends GetxController {
   @override

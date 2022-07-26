@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
 import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:scroller/app/modules/postUplodingscreen/model/postModel.dart';
@@ -61,7 +62,6 @@ class PostUplodingscreenController extends GetxController {
     });
     TaskSnapshot snp = await uploadTask;
     String imageUrl = await snp.ref.getDownloadURL();
-    Get.back();
     return imageUrl;
   }
 
@@ -82,16 +82,16 @@ class PostUplodingscreenController extends GetxController {
 
   void showProgerss() {
     Get.defaultDialog(
-        title: "Post is uploding Wait",
-        titleStyle: TextStyle(fontSize: 17, fontWeight: FontWeight.normal),
+        title: "",
         middleText: "",
-        actions: [
-          Center(
-            child: CircularProgressIndicator(color: buttonColor),
+        content: Center(
+          child: LoadingAnimationWidget.prograssiveDots(
+            size: 70,
+            color: buttonColor!,
           ),
-        ],
-        backgroundColor: Color(0xff1f222a),
+        ),
+        backgroundColor: Color.fromARGB(255, 33, 36, 42),
         middleTextStyle: TextStyle(color: Colors.white),
-        radius: 8);
+        radius: 14);
   }
 }

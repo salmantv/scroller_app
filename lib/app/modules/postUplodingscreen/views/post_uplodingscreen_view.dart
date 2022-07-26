@@ -4,10 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:scroller/app/modules/confermationscreen/views/widget/button.dart';
 import 'package:scroller/app/modules/global/views/global_view.dart';
+import 'package:scroller/app/modules/home/views/home_view.dart';
 import 'package:video_compress/video_compress.dart';
 import '../../confermationscreen/controllers/confermationscreen_controller.dart';
+import '../../home/controllers/home_controller.dart';
 import '../controllers/post_uplodingscreen_controller.dart';
 
 class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
@@ -21,6 +24,8 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
 
   final confermationcontroller = Get.put(ConfermationscreenController());
   final postuplodecontroller = Get.put(PostUplodingscreenController());
+  final homecontroller = Get.put(HomeController());
+
   final bioTextcontroll = TextEditingController();
   File Coverimage;
 
@@ -105,7 +110,9 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                       size: 35,
                     ),
                     trailing: IconButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          postuplodecontroller.showProgerss();
+                        },
                         icon: Icon(Icons.arrow_forward_ios_outlined)),
                   ),
                   SizedBox(
@@ -135,7 +142,9 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                       NextButton(
                         hintText: "Cancel",
                         circular: 30,
-                        Ontap: () {},
+                        Ontap: () {
+                          cancelPop();
+                        },
                         colorbutton: Color(0xff1f222a),
                       ),
                       NextButton(
@@ -144,6 +153,7 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
                           Ontap: () async {
                             await postuplodecontroller.uploadingPost(
                                 bioTextcontroll.text, videopath, videofile);
+                            Get.back();
                           },
                           colorbutton: buttonColor),
                     ],
@@ -153,5 +163,36 @@ class PostUplodingscreenView extends GetView<PostUplodingscreenController> {
             ),
           )),
     );
+  }
+
+  void cancelPop() {
+    Get.defaultDialog(
+        title: "",
+        middleText: "",
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 200,
+              height: 80,
+              child: Text("Are you sure you want cancel ?"),
+            ),
+            TextButton(
+                onPressed: () async {
+                  confermationcontroller.dispose();
+                  homecontroller.pageindex.value = 0;
+                  await Get.offAll(HomeView());
+                },
+                child: Text("Conform")),
+            TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text("Cancel")),
+          ],
+        ),
+        backgroundColor: Color.fromARGB(255, 33, 36, 42),
+        middleTextStyle: TextStyle(color: Colors.white),
+        radius: 14);
   }
 }
