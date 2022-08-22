@@ -10,4 +10,24 @@ users and you can like every post and comment and share and
 more.
 
 
+## Additional features
+- Firebase as backend
+- Like & comment
+- Flutter
+- Search users
+- Video-uploading
+
+
+## Packages used
+- firebase_auth
+- video_player
+- image_picker
+- auto_size_text
+
+
+
 ![Preview 7](https://user-images.githubusercontent.com/96410825/185905015-dd26f2fe-446d-434a-b040-484c1c6f613c.png)
+
+
+![Preview 6 (1)](https://user-images.githubusercontent.com/96410825/185925613-c5ea672d-7bf3-4b89-aa96-dccce660ed9f.png)
+
