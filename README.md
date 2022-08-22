@@ -1,16 +1,13 @@
-# scroller
+# Social media android application
 
-A new Flutter project.
 
-## Getting Started
+Scroller is a simple social media app that users can post videos
+instantly. The app is built in MVC architecture with GetX as state
+management and firebase as a backend. Users can sign up
+with their email id. Also this app supports google sign-in and
+signup. After registering in the app users can search for other
+users and you can like every post and comment and share and
+more.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Preview 7](https://user-images.githubusercontent.com/96410825/185905015-dd26f2fe-446d-434a-b040-484c1c6f613c.png)
