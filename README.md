@@ -1,3 +1,7 @@
+
+
+
+
 # Social media android application
 
 
@@ -31,3 +35,5 @@ more.
 
 ![Preview 6 (1)](https://user-images.githubusercontent.com/96410825/185925613-c5ea672d-7bf3-4b89-aa96-dccce660ed9f.png)
 
+
+![Preview 6 (2)](https://user-images.githubusercontent.com/96410825/186083250-2168be41-a77d-4ee3-aa6e-890c39decbdb.png)
